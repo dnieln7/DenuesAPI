@@ -16,10 +16,10 @@
     "operatorsAliases": 0
   },
   "production": {
-    "username": "postgres",
-    "password": "root",
-    "database": "censos",
-    "host": "127.0.0.1",
+    "username": "uv",
+    "password": "admin",
+    "database": "uvsoft",
+    "host": "35.239.136.79",
     "dialect": "postgresql",
     "operatorsAliases": 0
   }
