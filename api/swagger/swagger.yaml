@@ -1,0 +1,261 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: DenuesAPI
+
+host: localhost:10010
+
+# Cors config
+
+x-google-endpoints:
+  - name: 'localhost:10010'
+    allowCors: 'true'
+
+# Paths
+
+basePath: /
+
+schemes: [http, https]
+
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+            
+  /entidades:
+    x-swagger-router-controller: data.controller
+    get:
+      description: get the game system list
+      operationId: getEstados
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetEntidadListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          
+  /municipios:
+    x-swagger-router-controller: data.controller
+    get:
+      description: get the game system list
+      operationId: getMunicipios
+      parameters:
+        - name: entidad
+          in: query
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetMunicipioListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            
+  /bancos:
+    x-swagger-router-controller: data.controller
+    get:
+      description: get the game system list
+      operationId: getBancos
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetBancoListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            
+  /censobymun:
+    x-swagger-router-controller: data.controller
+    get:
+      description: get the game system list
+      operationId: getCensosByMun
+      parameters:
+        - name: entidad
+          in: query
+          type: string
+          required: true
+        - name: municipio
+          in: query
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetCensoListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            
+  /censobyedo:
+    x-swagger-router-controller: data.controller
+    get:
+      description: get the game system list
+      operationId: getCensosByEdo
+      parameters:
+        - name: entidad
+          in: query
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetCensoListResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          
+  /denues:
+    x-swagger-router-controller: data.controller
+    get:
+      description: get the game system list
+      operationId: getDenues
+      parameters:
+        - name: entidad
+          in: query
+          type: string
+          required: true
+        - name: municipio
+          in: query
+          type: string
+          required: true
+        - name: tipo
+          in: query
+          type: string
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/GetDenueListResponse"
+        default:
+            description: Error
+            schema:
+              $ref: "#/definitions/ErrorResponse"
+  
+  /swagger:
+    x-swagger-pipe: swagger_raw
+
+definitions:
+
+# Generic responses
+      
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+          
+# Municipios Objects
+        
+  GetMunicipioResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      idmunicipio:
+        type: string
+      municipio:
+        type: string
+    
+  GetMunicipioListResponse:
+    required:
+      - municipios
+    properties:
+      municipios:
+        type: array
+        items:
+          $ref: "#/definitions/GetMunicipioResponse"
+          
+# Entidades Objects
+    
+  GetEntidadResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      idestado:
+        type: string
+      estado:
+        type: string
+        
+  GetEntidadListResponse:
+    required:
+      - entidades
+    properties:
+      entidades:
+        type: array
+        items:
+          $ref: "#/definitions/GetEntidadResponse"
+          
+# Bancos Objects
+            
+  GetBancoResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      tipo:
+        type: string
+      descripcion:
+        type: string
+        
+  GetBancoListResponse:
+    required:
+    - bancos
+    properties:
+      bancos:
+        type: array
+        items:
+          $ref: "#/definitions/GetBancoResponse"
+          
+# Censos
+  
+  GetCensoResponse:
+    type: object
+    properties:
+      idestado:
+        type: string
+      idmunicipio:
+        type: string
+  
+  GetCensoListResponse:
+    required:
+      - censos
+    properties:
+      censos:
+        type: array
+        items:
+          $ref: "#/definitions/GetCensoResponse"
+  
+# Denues Objects
+
+  GetDenueResponse:
+    type: object
+    properties:
+      idestado:
+        type: string
+      idmunicipio:
+        type: string
+  
+  GetDenueListResponse:
+    required:
+      - denues
+    properties:
+      denues:
+        type: array
+        items:
+          $ref: "#/definitions/GetDenueResponse"

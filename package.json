@@ -1,0 +1,30 @@
+{
+  "name": "denues-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "keywords": [],
+  "author": "dnieln7",
+  "license": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "4.12.3",
+    "jsonwebtoken": "8.5.1",
+    "lodash": "4.17.15",
+    "pg": "^7.12.1",
+    "pg-hstore": "2.3.3",
+    "sequelize": "5.19.6",
+    "swagger-express-mw": "0.1.0",
+    "swagger-tools": "0.10.4",
+    "yamljs": "0.3.0",
+    "cors": "2.8.5"
+  },
+  "devDependencies": {
+    "should": "^7.1.0",
+    "supertest": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "swagger project test"
+  }
+}
